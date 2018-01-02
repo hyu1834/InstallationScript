@@ -12,14 +12,14 @@ then
 	if [ "$distribution_name" = "Ubuntu" ]
 	then
 		# First make sure everything is up to date
-		sudo apt-get update
-		sudo apt-get upgrade
+		sudo apt-get -y update
+		sudo apt-get -y upgrade
 
-		sudo apt-get remove x264 libx264-dev
+		sudo apt-get -y remove x264 libx264-dev
  
-		sudo apt-get install build-essential checkinstall cmake pkg-config yasm
-		sudo apt-get install git gfortran
-		sudo apt-get install libjpeg8-dev libjasper-dev libpng12-dev
+		sudo apt-get install -y build-essential checkinstall cmake pkg-config yasm
+		sudo apt-get install -y git gfortran
+		sudo apt-get install -y libjpeg8-dev libjasper-dev libpng12-dev
 
 		if [ "$release_version" = "16.04" ]
 		then
@@ -80,6 +80,9 @@ then
 		sudo make install
 		sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
 		sudo ldconfig
+
+		cd ../../
+		rm -rf opencv/
 	fi
 elif [ "$system_platform" = "Darwin" ]
 then
