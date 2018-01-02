@@ -51,6 +51,10 @@ then
 		make all -j4 # 4 cores
 		sudo make install
 		sudo ldconfig
+
+		cd ../../
+		rm -rf opencv
+		
 		fi
 elif [ "$system_platform" = "Darwin" ]
 then
