@@ -87,6 +87,36 @@ then
 elif [ "$system_platform" = "Darwin" ]
 then
 	echo "OSX"
+	# Install homebrew
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	brew update
+	# Add Homebrew path in PATH
+	echo "# Homebrew" >> ~/.bash_profile
+	echo "export PATH=/usr/local/bin:$PATH" >> ~/.bash_profile
+	source ~/.bash_profile
+	brew brew tap homebrew/science
+ 	
+ 	# Install python
+ 	brew install python python3
+ 	brew link python
+	brew link python3
+	brew upgrade python
+	brew upgrade python3
+
+	echo "Expected Python2 location /usr/local/bin/python2"
+	which python2  # it should output /usr/local/bin/python2
+	echo "Expected Python3 location /usr/local/bin/python2"
+	which python3  # it should output /usr/local/bin/python3
+
+	echo "export PATH=/usr/local/opt/python/libexec/bin:$PATH" >> ~/.bash_profile
+
+	# install opencv3
+	brew install opencv
+
+	# linking opencv3 to python
+	echo /usr/local/opt/opencv/lib/python2.7/site-packages >> /usr/local/lib/python2.7/site-packages/opencv3.pth
+	echo /usr/local/opt/opencv/lib/python3.6/site-packages >> /usr/local/lib/python3.6/site-packages/opencv3.pth
+
 else
 	echo "Window"
 fi
