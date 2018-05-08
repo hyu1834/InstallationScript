@@ -30,7 +30,13 @@ then
 	fi
 elif [ "$system_platform" = "Darwin" ]
 then
-	echo "OSX"
+	# install homebrew
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+	# install PCL via homebrew
+	brew update
+	brew install pcl
+
 else
 	echo "Window"
 fi
